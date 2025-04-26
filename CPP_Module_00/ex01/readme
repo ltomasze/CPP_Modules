@@ -1,0 +1,77 @@
+Jasne, rozłóżmy to zadanie na kroki, od których warto zacząć:
+
+1.  **Struktura Projektu i Makefile:**
+    *   Utwórz katalog `ex01/`.
+    *   Wewnątrz `ex01/` stwórz podstawowy `Makefile`. Będzie on na razie prosty, ale musi zawierać reguły do kompilacji (`all`), czyszczenia plików obiektowych i wykonywalnych (`clean`, `fclean`) oraz ponownej kompilacji (`re`). Użyj kompilatora `c++` i flag `-Wall -Wextra -Werror -std=c++98`. Zdefiniuj nazwę pliku wykonywalnego (np. `phonebook`).
+
+2.  **Klasa `Contact`:**
+    *   Zaprojektuj klasę `Contact`. Będzie ona przechowywać informacje o pojedynczym kontakcie.
+    *   Zadeklaruj **prywatne** składowe (zmienne członkowskie) do przechowywania: `firstName`, `lastName`, `nickname`, `phoneNumber`, `darkestSecret`. Najlepiej użyć typu `std::string`.
+    *   Zadeklaruj **publiczne** metody (funkcje członkowskie) do ustawiania i pobierania tych danych. Możesz stworzyć osobne "settery" (np. `setFirstName(std::string name)`) i "gettery" (np. `getFirstName() const`) dla każdego pola, albo jedną metodę do ustawienia wszystkich pól naraz. Gettery powinny być metodami `const`, ponieważ nie modyfikują obiektu.
+    *   Utwórz pliki `Contact.hpp` (deklaracja klasy) i `Contact.cpp` (definicje metod klasy). Pamiętaj o include guardach w pliku `.hpp`.
+
+3.  **Klasa `PhoneBook`:**
+    *   Zaprojektuj klasę `PhoneBook`. Będzie ona zarządzać kontaktami.
+    *   Zadeklaruj **prywatną** tablicę obiektów `Contact`. Musi mieć stały rozmiar 8: `Contact contacts[8];`. **Pamiętaj: żadnej dynamicznej alokacji!**
+    *   Dodaj **prywatną** zmienną (np. `int contactCount` lub `int nextIndex`) do śledzenia, ile kontaktów jest aktualnie zapisanych i/lub jaki jest indeks następnego wolnego miejsca. Zainicjuj ją na 0.
+    *   Dodaj **prywatną** zmienną (np. `int oldestIndex`) do śledzenia, który kontakt jest najstarszy (potrzebne do zastąpienia go, gdy książka jest pełna). Zainicjuj ją na 0.
+    *   Zadeklaruj **publiczne** metody:
+        *   `addContact(const Contact& contact)`: Metoda do dodawania nowego kontaktu. Będzie musiała obsłużyć logikę dodawania do tablicy i zastępowania najstarszego kontaktu, gdy tablica jest pełna.
+        *   `displayContactsSummary()`: Metoda do wyświetlania skróconej listy kontaktów (index, imię, nazwisko, pseudonim) zgodnie z wymogami formatowania.
+        *   `displayContactDetails(int index)`: Metoda do wyświetlania pełnych informacji o kontakcie o podanym indeksie.
+    *   Utwórz pliki `PhoneBook.hpp` i `PhoneBook.cpp`.
+
+4.  **Funkcja `main` i Główna Pętla:**
+    *   Utwórz plik `main.cpp`.
+    *   Zainkluduj nagłówki `PhoneBook.hpp` (który powinien inkludować `Contact.hpp`) i `<iostream>`, `<string>`.
+    *   W funkcji `main`, stwórz instancję klasy `PhoneBook`: `PhoneBook phoneBook;`.
+    *   Rozpocznij pętlę `while(true)`, która będzie działać, dopóki użytkownik nie wpisze `EXIT`.
+    *   Wewnątrz pętli, wyświetl użytkownikowi prośbę o wprowadzenie komendy (`"Enter command (ADD, SEARCH, EXIT): "`).
+    *   Wczytaj komendę od użytkownika (np. używając `std::getline(std::cin, command)`).
+    *   Użyj instrukcji `if-else if-else`, aby sprawdzić, jaką komendę wprowadził użytkownik:
+        *   Jeśli `command == "ADD"`, wywołaj logikę dodawania kontaktu (na razie może być pusta).
+        *   Jeśli `command == "SEARCH"`, wywołaj logikę wyszukiwania (na razie pusta).
+        *   Jeśli `command == "EXIT"`, przerwij pętlę (`break;`) lub zakończ program (`return 0;`).
+        *   W przeciwnym razie (inna komenda), zignoruj ją lub wyświetl komunikat błędu i kontynuuj pętlę.
+
+5.  **Implementacja Logiki `ADD`:**
+    *   W bloku `if (command == "ADD")`:
+        *   Poproś użytkownika o wprowadzenie każdego z pięciu pól kontaktu (imię, nazwisko, pseudonim, numer telefonu, sekret). Używaj `std::getline` do wczytywania, aby obsłużyć spacje.
+        *   **Ważne:** Sprawdź, czy żadne z wprowadzonych pól nie jest puste. Jeśli jest, poproś użytkownika ponownie o wprowadzenie tego pola, dopóki nie poda niepustej wartości.
+        *   Stwórz tymczasowy obiekt `Contact`: `Contact newContact;`.
+        *   Użyj setterów obiektu `newContact`, aby ustawić w nim wczytane dane.
+        *   Wywołaj metodę obiektu `phoneBook`, aby dodać kontakt: `phoneBook.addContact(newContact);`.
+    *   W klasie `PhoneBook`, zaimplementuj metodę `addContact`. Powinna ona:
+        *   Umieścić nowy kontakt w tablicy `contacts` pod indeksem `nextIndex`.
+        *   Zaktualizować `nextIndex` (np. `nextIndex = (nextIndex + 1) % 8;`).
+        *   Jeśli książka była pełna przed dodaniem (np. sprawdzając `contactCount`), zaktualizować `oldestIndex` w ten sam sposób co `nextIndex`.
+        *   Zaktualizować `contactCount` (jeśli go używasz), upewniając się, że nie przekracza 8.
+
+6.  **Implementacja Logiki `SEARCH` (Wyświetlanie Listy):**
+    *   W bloku `if (command == "SEARCH")`:
+        *   Wywołaj metodę `phoneBook.displayContactsSummary();`.
+    *   W klasie `PhoneBook`, zaimplementuj metodę `displayContactsSummary`. Powinna ona:
+        *   Wyświetlić nagłówek tabeli (`"   index|first name| last name|  nickname"`, pamiętając o wyrównaniu).
+        *   Przejść w pętli przez kontakty w tablicy (od 0 do `contactCount - 1` lub przez całą tablicę, jeśli zawsze zastępujesz).
+        *   Dla każdego kontaktu, wyświetlić jego indeks (od 1 do 8), imię, nazwisko i pseudonim w odpowiednich kolumnach.
+        *   Użyj manipulatorów strumienia z `<iomanip>` (`std::setw(10)`, `std::right`) do ustawienia szerokości kolumny i wyrównania do prawej.
+        *   Obsłuż skracanie tekstu: jeśli tekst jest dłuższy niż 10 znaków, wyświetl pierwsze 9 znaków, a dziesiąty zastąp kropką (`.`). Możesz użyć `string::length()`, `string::substr()`.
+        *   Oddziel kolumny znakiem `|`.
+
+7.  **Implementacja Logiki `SEARCH` (Wyświetlanie Szczegółów):**
+    *   Po wyświetleniu listy w bloku `SEARCH`:
+        *   Poproś użytkownika o podanie indeksu kontaktu do wyświetlenia (`"Enter contact index: "`).
+        *   Wczytaj indeks (może być potrzebna konwersja ze stringa na int, np. za pomocą `std::stoi`, pamiętaj o obsłudze błędów, jeśli użytkownik nie wpisze liczby).
+        *   Sprawdź, czy podany indeks jest poprawny (czy jest liczbą, czy mieści się w zakresie od 1 do liczby aktualnie zapisanych kontaktów).
+        *   Jeśli indeks jest poprawny, wywołaj `phoneBook.displayContactDetails(index - 1);` (pamiętaj, że użytkownik podaje indeks od 1, a tablice są indeksowane od 0).
+        *   Jeśli indeks jest niepoprawny, wyświetl odpowiedni komunikat błędu.
+    *   W klasie `PhoneBook`, zaimplementuj metodę `displayContactDetails(int index)`. Powinna ona:
+        *   Pobrać odpowiedni obiekt `Contact` z tablicy `contacts` na podstawie podanego `index`.
+        *   Wyświetlić wszystkie pola tego kontaktu (imię, nazwisko, pseudonim, numer, sekret), każde w osobnej linii.
+
+8.  **Testowanie i Finalizacja:**
+    *   Skompiluj projekt używając `make`.
+    *   Dokładnie przetestuj wszystkie funkcjonalności: dodawanie kontaktów (w tym dodawanie 9-tego), wyszukiwanie (formatowanie listy, wybieranie indeksu, obsługa błędów), komendę EXIT i ignorowanie błędnych komend.
+    *   Upewnij się, że `Makefile` działa poprawnie (`make`, `make clean`, `make fclean`, `make re`).
+
+Zacznij od tych kroków, implementując klasy i podstawową pętlę, a następnie stopniowo dodawaj logikę dla komend `ADD` i `SEARCH`. Powodzenia!
