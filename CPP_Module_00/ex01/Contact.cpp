@@ -5,39 +5,40 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ltomasze <ltomasze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/26 15:25:52 by ltomasze          #+#    #+#             */
-/*   Updated: 2025/04/26 16:51:20 by ltomasze         ###   ########.fr       */
+/*   Created: 2025/05/04 13:13:45 by ltomasze          #+#    #+#             */
+/*   Updated: 2025/05/04 13:24:08 by ltomasze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contact.hpp"
 
-Contact::Contact()
+//Contact::Contact() {}
+
+void Contact::setFirstName(const std::string& firstName)
 {
+	this->firstName = firstName;
 }
-Contact::~Contact()
+
+void Contact::setLastName(const std::string& lastName)
 {
+	this->lastName = lastName;
 }
-void Contact::setFirstName(std::string word)
+
+void Contact::setNickname(const std::string& nickname)
 {
-	firstName = word;
+	this->nickname = nickname;
 }
-void Contact::setLastName(std::string word)
+
+void Contact::setPhoneNumber(const std::string& phoneNumber)
 {
-	lastName = word;
+	this->phoneNumber = phoneNumber;
 }
-void Contact::setNickname(std::string word)
+
+void Contact::setDarkestSecret(const std::string& darkestSecret)
 {
-	nickname = word;
+	this->darkestSecret = darkestSecret;
 }
-void Contact::setPhoneNumber(std::string word)
-{
-	phoneNumber = word;
-}
-void Contact::setDarkestSecret(std::string word)
-{
-	darkestSecret = word;
-}
+
 std::string Contact::getFirstName() const
 {
 	return firstName;

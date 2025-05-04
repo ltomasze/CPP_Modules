@@ -5,54 +5,42 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ltomasze <ltomasze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/27 13:03:47 by ltomasze          #+#    #+#             */
-/*   Updated: 2025/04/27 13:07:51 by ltomasze         ###   ########.fr       */
+/*   Created: 2025/05/03 13:04:15 by ltomasze          #+#    #+#             */
+/*   Updated: 2025/05/04 14:29:11 by ltomasze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Phonebook.hpp"
-#include <iostream>
-#include <string>
+#include "PhoneBook.hpp"
 
 int main()
 {
-    PhoneBook phoneBook; // Tworzymy instancję książki telefonicznej
+    PhoneBook phoneBook;
     std::string command;
 
-    std::cout << "Welcome to My Awesome PhoneBook!" << std::endl;
+    std::cout << "Welcome to My Awesome PhoneBook, use ADD, SEARCH or EXIT!" << std::endl;
 
     while (true)
     {
-        // Wyświetl menu
-        std::cout << "Enter a command (ADD, SEARCH, EXIT): ";
-        std::getline(std::cin, command);
-
-        // Obsługa komend
+        std::cout << "Enter a command: ";
+		if (!std::getline(std::cin, command))
+    	{
+    	    if (std::cin.eof())
+    	        std::cout << "Ctrl+D pressed, exiting PhoneBook." << std::endl;
+    	    else
+    	        std::cerr << "Error reading input. Exiting." << std::endl;
+    	    break;
+    	}
         if (command == "ADD")
-        {
             phoneBook.addContact();
-        }
         else if (command == "SEARCH")
-        {
             phoneBook.searchContact();
-        }
         else if (command == "EXIT")
         {
             std::cout << "Exiting PhoneBook. Goodbye!" << std::endl;
-            break; // Zakończ pętlę i program
-        }
-        else
-        {
-            std::cout << "Invalid command. Please enter ADD, SEARCH, or EXIT." << std::endl;
-        }
-
-        // Sprawdź, czy strumień wejściowy jest w dobrym stanie
-        if (std::cin.eof())
-        {
-            std::cout << "EOF detected. Exiting PhoneBook." << std::endl;
             break;
         }
+        else
+            std::cout << "Please enter ADD, SEARCH, or EXIT." << std::endl;
     }
-
     return 0;
 }
