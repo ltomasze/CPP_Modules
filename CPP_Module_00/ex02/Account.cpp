@@ -6,63 +6,27 @@
 /*   By: ltomasze <ltomasze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 15:37:31 by ltomasze          #+#    #+#             */
-/*   Updated: 2025/05/04 15:47:19 by ltomasze         ###   ########.fr       */
+/*   Updated: 2025/05/08 16:05:18 by ltomasze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-### Plan implementacji `Account.cpp`
-
-1. **Statyczne zmienne:**
-   - `_nbAccounts`: liczba kont.
-   - `_totalAmount`: całkowita suma środków na wszystkich kontach.
-   - `_totalNbDeposits`: całkowita liczba wpłat.
-   - `_totalNbWithdrawals`: całkowita liczba wypłat.
-
-2. **Konstruktor i destruktor:**
-   - Konstruktor inicjalizuje konto z początkowym depozytem i aktualizuje statyczne zmienne.
-   - Destruktor wyświetla informacje o zamykanym koncie.
-
-3. **Metody:**
-   - `makeDeposit`: dodaje wpłatę do konta i aktualizuje statyczne zmienne.
-   - `makeWithdrawal`: odejmuje wypłatę z konta, jeśli jest wystarczająca ilość środków, i aktualizuje statyczne zmienne.
-   - `checkAmount`: zwraca aktualny stan konta.
-   - `displayStatus`: wyświetla szczegóły konta.
-   - `displayAccountsInfos`: wyświetla informacje o wszystkich kontach.
-   - `_displayTimestamp`: wyświetla znacznik czasu.
-
-### Wyjaśnienie implementacji:
-
-1. **Statyczne zmienne:**
-   - Przechowują globalne informacje o wszystkich kontach.
-
-2. **Konstruktor i destruktor:**
-   - Konstruktor inicjalizuje konto, przypisuje indeks i aktualizuje statystyki.
-   - Destruktor wyświetla informacje o zamykanym koncie.
-
-3. **Metody:**
-   - `makeDeposit`: Dodaje wpłatę do konta i aktualizuje statystyki.
-   - `makeWithdrawal`: Sprawdza, czy wypłata jest możliwa, i aktualizuje statystyki.
-   - `displayStatus`: Wyświetla szczegóły konta.
-   - `displayAccountsInfos`: Wyświetla globalne informacje o wszystkich kontach.
-   - `_displayTimestamp`: Wyświetla znacznik czasu w formacie `[YYYYMMDD_HHMMSS]`.
-*/
   
 #include "Account.hpp"
 #include <iostream>
 #include <iomanip>
 #include <ctime>
 
-// Inicjalizacja statycznych zmiennych
 int Account::_nbAccounts = 0;
 int Account::_totalAmount = 0;
 int Account::_totalNbDeposits = 0;
 int Account::_totalNbWithdrawals = 0;
 
-// Prywatna metoda do wyświetlania znacznika czasu
-void Account::_displayTimestamp(void) {
+void Account::_displayTimestamp(void) 
+{
     std::time_t now = std::time(NULL);
+	//std::time_t std::time(std::time_t* time);
     std::tm *ltm = std::localtime(&now);
+	//std::tm* std::localtime(const std::time_t* time);
     std::cout << "[" << 1900 + ltm->tm_year
               << std::setw(2) << std::setfill('0') << 1 + ltm->tm_mon
               << std::setw(2) << std::setfill('0') << ltm->tm_mday << "_"
@@ -71,39 +35,58 @@ void Account::_displayTimestamp(void) {
               << std::setw(2) << std::setfill('0') << ltm->tm_sec << "] ";
 }
 
-// Konstruktor
+/*
+struct tm {
+    int tm_sec;   Sekundy (0-60, gdzie 60 oznacza sekundę przestępną)
+    int tm_min;   Minuty (0-59)
+    int tm_hour;  Godziny (0-23)
+    int tm_mday;  Dzień miesiąca (1-31)
+    int tm_mon;   Miesiąc (0-11, gdzie 0 = styczeń, 11 = grudzień)
+    int tm_year;  Rok od 1900 (np. 125 oznacza rok 2025)
+    int tm_wday;  Dzień tygodnia (0-6, gdzie 0 = niedziela)
+    int tm_yday;  Dzień roku (0-365, gdzie 0 = 1 stycznia)
+    int tm_isdst; Flaga czasu letniego (>0 oznacza czas letni, 0 oznacza brak, <0 brak informacji)
+};
+*/
+
 Account::Account(int initial_deposit)
-    : _accountIndex(_nbAccounts), _amount(initial_deposit), _nbDeposits(0), _nbWithdrawals(0) {
+    : _accountIndex(_nbAccounts), _amount(initial_deposit), _nbDeposits(0), _nbWithdrawals(0) //lista inicjalizacyjna
+{
+	//ciało konstruktora
     _nbAccounts++;
     _totalAmount += initial_deposit;
     _displayTimestamp();
     std::cout << "index:" << _accountIndex << ";amount:" << _amount << ";created" << std::endl;
 }
 
-// Destruktor
-Account::~Account(void) {
+Account::~Account(void) 
+{
     _displayTimestamp();
     std::cout << "index:" << _accountIndex << ";amount:" << _amount << ";closed" << std::endl;
 }
 
-// Statyczne metody
-int Account::getNbAccounts(void) {
+int Account::getNbAccounts(void) 
+{
     return _nbAccounts;
 }
 
-int Account::getTotalAmount(void) {
+int Account::getTotalAmount(void) 
+{
     return _totalAmount;
 }
 
-int Account::getNbDeposits(void) {
+int Account::getNbDeposits(void) 
+{
     return _totalNbDeposits;
 }
 
-int Account::getNbWithdrawals(void) {
+int Account::getNbWithdrawals(void) 
+{
     return _totalNbWithdrawals;
 }
 
-void Account::displayAccountsInfos(void) {
+void Account::displayAccountsInfos(void) 
+{
     _displayTimestamp();
     std::cout << "accounts:" << _nbAccounts
               << ";total:" << _totalAmount
@@ -111,7 +94,6 @@ void Account::displayAccountsInfos(void) {
               << ";withdrawals:" << _totalNbWithdrawals << std::endl;
 }
 
-// Metody instancji
 void Account::makeDeposit(int deposit) {
     _displayTimestamp();
     std::cout << "index:" << _accountIndex
