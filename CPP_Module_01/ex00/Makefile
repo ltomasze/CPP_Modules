@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: ltomasze <ltomasze@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/05/04 15:43:23 by ltomasze          #+#    #+#              #
-#    Updated: 2025/05/10 17:13:56 by ltomasze         ###   ########.fr        #
+#    Created: 2025/05/10 16:49:33 by ltomasze          #+#    #+#              #
+#    Updated: 2025/05/10 17:23:59 by ltomasze         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = Zombie
 CC = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRC = Account.cpp tests.cpp
+SRC = main.cpp Zombie.cpp newZombie.cpp randomChump.cpp
 
 all: $(NAME)
 
