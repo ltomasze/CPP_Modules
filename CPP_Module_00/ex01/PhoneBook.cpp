@@ -6,7 +6,7 @@
 /*   By: ltomasze <ltomasze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 14:16:06 by ltomasze          #+#    #+#             */
-/*   Updated: 2025/05/04 15:01:03 by ltomasze         ###   ########.fr       */
+/*   Updated: 2025/05/10 15:35:17 by ltomasze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,12 @@ void PhoneBook::searchContact()
 	int index;
 	std::cout << "Enter the index of the contact you want to view (1-" << lastIndex << "): ";
 	std::cin >> index;
+	if (std::cin.fail()) 
+	{
+	    std::cin.clear();
+	    std::cout << "Invalid index. Please try again." << std::endl;
+	    return;
+	}
 	if (std::cin.eof()) 
     {
     	std::cout << "Input interrupted. Returning to main menu." << std::endl;
