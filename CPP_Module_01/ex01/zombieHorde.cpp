@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.hpp                                         :+:      :+:    :+:   */
+/*   zombieHorde.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ltomasze <ltomasze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/10 16:55:17 by ltomasze          #+#    #+#             */
-/*   Updated: 2025/05/11 13:02:55 by ltomasze         ###   ########.fr       */
+/*   Created: 2025/05/11 11:24:13 by ltomasze          #+#    #+#             */
+/*   Updated: 2025/05/11 12:51:33 by ltomasze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ZOMBIE_HPP
-# define ZOMBIE_HPP
+#include "Zombie.hpp"
 
-#include <iostream>
-#include <string>
-
-class Zombie
+Zombie* zombieHorde(int N, std::string name)
 {
-	private:
-		std::string name;
-	public:
-		Zombie(std::string name);
-		~Zombie();
-		void announce() const;
-};
-
-Zombie* newZombie(std::string name);
-void randomChump(std::string name);
-
-#endif
+	if (N <= 0)
+	{
+		std::cerr << "Error: N must be greater than 0." << std::endl;
+		return (NULL);
+	}
+	Zombie* zHorde = new Zombie[N];
+	for (int i = 0; i < N; i++)
+	{
+		zHorde[i].setName(name);
+	}
+	return (zHorde);
+}

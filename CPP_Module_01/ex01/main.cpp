@@ -1,32 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.hpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ltomasze <ltomasze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/10 16:55:17 by ltomasze          #+#    #+#             */
-/*   Updated: 2025/05/11 13:02:55 by ltomasze         ###   ########.fr       */
+/*   Created: 2025/05/11 11:26:20 by ltomasze          #+#    #+#             */
+/*   Updated: 2025/05/11 13:22:10 by ltomasze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ZOMBIE_HPP
-# define ZOMBIE_HPP
+#include "Zombie.hpp"
 
-#include <iostream>
-#include <string>
-
-class Zombie
+int main()
 {
-	private:
-		std::string name;
-	public:
-		Zombie(std::string name);
-		~Zombie();
-		void announce() const;
-};
-
-Zombie* newZombie(std::string name);
-void randomChump(std::string name);
-
-#endif
+	int N = 5;
+	Zombie* zhorde = zombieHorde(N, "Zombie");
+	if(zhorde)
+	{
+		/*for (int i = 0; i < N; i++)
+		{
+			std::ostringstream oss;
+			oss << "Zombie" << (i+1);
+			zhorde[i].setName(oss.str());
+		}*/
+		for(int i = 0; i < N; i++)
+		{
+			zhorde[i].announce();
+		}
+		delete[] zhorde;
+	}
+	else
+	{
+		std::cerr << "Failed to create zombie horde." << std::endl;
+	}
+	return 0;
+}
