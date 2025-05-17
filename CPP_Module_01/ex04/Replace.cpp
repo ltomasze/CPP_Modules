@@ -6,7 +6,7 @@
 /*   By: ltomasze <ltomasze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:21:24 by ltomasze          #+#    #+#             */
-/*   Updated: 2025/05/17 16:42:19 by ltomasze         ###   ########.fr       */
+/*   Updated: 2025/05/17 17:48:24 by ltomasze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,34 @@ Replace::~Replace() {}
 
 bool Replace::processFile() const
 {
-	
+	std::ifstream inputFile(_filename); //do otwierania pliku w trybie odczytu
+	if(!inputFile.is_open())
+	{
+		std::cerr << "Error: Could not open file " << _filename << std::endl;
+		return false;
+	}
+	std::ofstream outputFile(_filename + ".replace"); //do tworzenia jesli nie ma i otwierania pliku w trybie zapisu
+	if (!outputFile.is_open())
+	{
+		std::cerr << "Error: Could not create output file " << _filename << ".replace" << std::endl;
+		return false;
+	}
+	std::string line;
+	while (std::getline(inputFile, line))
+	{
+		size_t pos = 0;
+		while ((pos = line.find(_s1, pos)) != std::string::npos)
+		//size_t find(const std::string& str, size_t pos = 0) const; ta funckcja zwraca npos jeśli
+		//nie znaleziono szukanego słowa, npos to takie jakby -1.
+		{
+			line.erase(pos, _s1.length()); //usuwa słowo o określonej długości
+			line.insert(pos, _s2);
+			pos += _s2.length();
+		}
+		outputFile << line << std::endl;
+	}
+	inputFile.close();
+	outputFile.close();
+	return true;
 }
+

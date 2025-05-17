@@ -6,11 +6,11 @@
 #    By: ltomasze <ltomasze@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/10 16:49:33 by ltomasze          #+#    #+#              #
-#    Updated: 2025/05/17 15:22:21 by ltomasze         ###   ########.fr        #
+#    Updated: 2025/05/17 16:54:31 by ltomasze         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = noSed
+NAME = replace
 CC = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 
