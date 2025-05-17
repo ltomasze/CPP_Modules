@@ -6,7 +6,7 @@
 /*   By: ltomasze <ltomasze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:21:24 by ltomasze          #+#    #+#             */
-/*   Updated: 2025/05/17 17:48:24 by ltomasze         ###   ########.fr       */
+/*   Updated: 2025/05/17 18:07:42 by ltomasze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,14 @@ Replace::~Replace() {}
 
 bool Replace::processFile() const
 {
-	std::ifstream inputFile(_filename); //do otwierania pliku w trybie odczytu
+	std::ifstream inputFile(_filename.c_str()); //do otwierania pliku w trybie odczytu
+	//c_str do konwersji std:string na const char*
 	if(!inputFile.is_open())
 	{
 		std::cerr << "Error: Could not open file " << _filename << std::endl;
 		return false;
 	}
-	std::ofstream outputFile(_filename + ".replace"); //do tworzenia jesli nie ma i otwierania pliku w trybie zapisu
+	std::ofstream outputFile((_filename + ".replace").c_str()); //do tworzenia jesli nie ma i otwierania pliku w trybie zapisu
 	if (!outputFile.is_open())
 	{
 		std::cerr << "Error: Could not create output file " << _filename << ".replace" << std::endl;
