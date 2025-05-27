@@ -6,7 +6,7 @@
 /*   By: ltomasze <ltomasze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:09:32 by ltomasze          #+#    #+#             */
-/*   Updated: 2025/05/17 18:03:17 by ltomasze         ###   ########.fr       */
+/*   Updated: 2025/05/27 12:19:08 by ltomasze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,13 @@ int main(int argc, char **argv)
 	std::string filename = argv[1];
 	std::string s1 = argv[2];
 	std::string s2 = argv[3];
+	struct stat fileStat;
+	if (stat(filename.c_str(), &fileStat) == 0 && fileStat.st_size == 0)
+	//The stat function retrieves information about the file, including its size
+	{
+		std::cerr << "Error: The file is empty." << std::endl;
+		return (1);
+	}
 	if(s1.empty())
 	{
 		std::cerr << "Error: s1 cannot be an empty string." << std::endl;

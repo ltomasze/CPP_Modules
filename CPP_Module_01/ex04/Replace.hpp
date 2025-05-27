@@ -6,7 +6,7 @@
 /*   By: ltomasze <ltomasze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:21:37 by ltomasze          #+#    #+#             */
-/*   Updated: 2025/05/17 15:30:32 by ltomasze         ###   ########.fr       */
+/*   Updated: 2025/05/27 12:01:52 by ltomasze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <sys/stat.h>
 
 class Replace
 {
