@@ -6,7 +6,7 @@
 /*   By: ltomasze <ltomasze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 12:33:17 by ltomasze          #+#    #+#             */
-/*   Updated: 2025/05/27 15:32:53 by ltomasze         ###   ########.fr       */
+/*   Updated: 2025/05/27 16:27:25 by ltomasze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,19 +37,34 @@ void Harl::error(void)
     std::cout << "This is unacceptable! I want to speak to the manager now." << std::endl;
 }
 
-void Harl::complain(std::string level)
+void Harl::filter(std::string level)
 {
-	void(Harl::*functions[])(void) = { &Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
-	//tablica do funkcji członkowskich
-	//return_type(ClassName::*array_name[])(parameter_list) = { &ClassName::method1, &ClassName::method2, ... };
-	std::string levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+	int index = -1;
+	std::string levels[] = { "DEBUG", "INFO", "WARNING", "ERROR"};
 	for (int i = 0; i < 4; i++)
 	{
-		if(levels[i] == level)
+		if (levels[i] == level)
 		{
-			(this->*functions[i])();
-			return;
+			index = i;
+			break;
 		}
 	}
-	std::cerr << "Unknown level." << std::endl;
+	switch (index)
+	{
+		case 0:
+			std::cout << "[ DEBUG ]" << std::endl;
+			debug();
+		case 1:
+			std::cout << "[ INFO ]" << std::endl;
+			info();
+		case 2:
+			std::cout << "[ WARNING ]" << std::endl;
+			warning();
+		case 3:
+			std::cout << "[ ERROR ]" << std::endl;
+			error();
+			break;
+		default:
+			std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
+	}
 }
