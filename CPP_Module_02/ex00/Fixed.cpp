@@ -6,7 +6,7 @@
 /*   By: ltomasze <ltomasze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 15:16:01 by ltomasze          #+#    #+#             */
-/*   Updated: 2025/05/29 16:58:32 by ltomasze         ###   ########.fr       */
+/*   Updated: 2025/05/31 16:17:17 by ltomasze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ Fixed::Fixed() : _fixedPointValue(0)
 	std::cout << "Default constructor called" << std::endl;
 }
 
-Fixed::Fixed(const Fixed &other)
+Fixed::Fixed(const Fixed &sourceObj)
 {
 	std::cout << "Copy constructor called" << std::endl;
-	*this = other;
-	//this->_fixedPointValue = other._fixedPointValue;
+	*this = sourceObj;
+	//this->_fixedPointValue = sourceObj._fixedPointValue;
 }
 
 Fixed::~Fixed()
@@ -29,13 +29,13 @@ Fixed::~Fixed()
 	std::cout << "Destructor called" << std::endl;
 }
 
-Fixed &Fixed::operator=(const Fixed &other)
+Fixed &Fixed::operator=(const Fixed &sourceObj)
 {
 	std::cout << "Copy assigment operator called" << std::endl;
-	if (this != &other)
+	if (this != &sourceObj)
 	{
-		this->setRawBits(other.getRawBits());
-		//this->_fixedPointValue = other._fixedPointValue;
+		this->setRawBits(sourceObj.getRawBits());
+		//this->_fixedPointValue = sourceObj._fixedPointValue;
 	}
 	return *this;
 }

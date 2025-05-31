@@ -6,7 +6,7 @@
 /*   By: ltomasze <ltomasze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 15:15:48 by ltomasze          #+#    #+#             */
-/*   Updated: 2025/05/29 16:50:55 by ltomasze         ###   ########.fr       */
+/*   Updated: 2025/05/31 16:22:31 by ltomasze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,35 +23,38 @@ class Fixed
 		
 	public:
 		Fixed();
-		Fixed(const Fixed &other);
+		Fixed(const Fixed &sourceObj);
 		~Fixed();
-		Fixed &operator=(const Fixed &other);
+		Fixed &operator=(const Fixed &sourceObj);
 
 		int getRawBits(void) const;
-		void setRawBits(int const raw);
+		void setRawBits(const int raw);
 };
 
 #endif
 
+// :: operator zakresu
+
 /*static oznacza że pole bitów ułamkowych należy do całej klasy a nie do konkretnego obiektu*/
 
 /*konstruktor kopiujący
-	ClassName(const ClassName &other)
+	ClassName(const ClassName &sourceObj)
 	{
 		this->field1 = other._field1;
 		this->field2 = other._field2;
 	}*/
 
 /*operator przypisania
-	ClassName &ClassName::operator=(const ClassName &other)
+	ClassName &ClassName::operator=(const ClassName &sourceObj)
 	{
-		if (this !=other) sprawdzenie czy nie przepisujemy obiektu do samego siebie;
+		if (this !=sourceObj) sprawdzenie czy nie przepisujemy obiektu do samego siebie;
 		{
-			this->field1 = other._field1; kopiowanie wartości z obiektu other
-			this->field2 = other._field2;
+			this->field1 = sourceObj._field1; kopiowanie wartości z obiektu sourceObj
+			this->field2 = sourceObj._field2;
 		}
 		return *this; zwracanie referencji do bieżącego obiektu(umożliwia to łańcuchowe
 						przypisanie np. a=b=c;)
 	}
 }*/
 
+/*int getRawBits(void) const; oznacza że metoda jest stała i zmienia stanu obiektu*/
