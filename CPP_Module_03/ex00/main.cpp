@@ -5,6 +5,7 @@ int main()
     ClapTrap noName;
     ClapTrap bot1("Bot1");
     ClapTrap bot2("Bot2");
+    ClapTrap bot3(bot1);
     noName = bot1;
 
     for (int i = 0; i < 11; i++)
