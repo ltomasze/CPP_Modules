@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ScavTrap
+NAME = FragTrap
 CC = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 
