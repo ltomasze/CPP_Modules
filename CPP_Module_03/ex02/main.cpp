@@ -1,5 +1,6 @@
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 int main()
 {
@@ -24,6 +25,18 @@ int main()
     bot1.takeDamage(20);
     bot1.beRepaired(1);
     Guardian1.guardGate();
+
+    FragTrap noName2;
+    FragTrap DudeBot1("DudeBot");
+    FragTrap DudeBot2(DudeBot1);
+    noName2 = DudeBot1;
+
+    DudeBot1.attack("Bot1");
+    bot1.takeDamage(30);
+    bot1.beRepaired(1);
+    DudeBot1.highFivesGuys();
+
+
     return 0;
 }
 /*
