@@ -45,7 +45,7 @@ void FragTrap::attack(const std::string& target)
     if (_hitPoints > 0 && _energyPoints > 0)
     {
         _energyPoints--;
-        std::cout << "FragTrap " << _name << " launches a powerful attack on " << target
+        std::cout << "FragTrap " << _name << " attacks " << target
                   << ", causing " << _attackDamage << " points of damage!" << std::endl;
     }
     else

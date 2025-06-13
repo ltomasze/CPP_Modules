@@ -24,6 +24,8 @@ int main()
     Guardian1.attack("Bot1");
     bot1.takeDamage(20);
     bot1.beRepaired(1);
+    Guardian1.takeDamage(15);
+    Guardian1.beRepaired(10);
     Guardian1.guardGate();
 
     FragTrap noName2;
@@ -34,6 +36,8 @@ int main()
     DudeBot1.attack("Bot1");
     bot1.takeDamage(30);
     bot1.beRepaired(1);
+    DudeBot1.takeDamage(50);
+    DudeBot1.beRepaired(20);
     DudeBot1.highFivesGuys();
 
 

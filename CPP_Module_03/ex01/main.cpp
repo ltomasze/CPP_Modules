@@ -23,6 +23,8 @@ int main()
     Guardian1.attack("Bot1");
     bot1.takeDamage(20);
     bot1.beRepaired(1);
+    Guardian1.takeDamage(15);
+    Guardian1.beRepaired(10);
     Guardian1.guardGate();
     return 0;
 }
