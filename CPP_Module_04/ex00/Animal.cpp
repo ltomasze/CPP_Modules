@@ -6,7 +6,7 @@
 /*   By: ltomasze <ltomasze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 13:14:13 by ltomasze          #+#    #+#             */
-/*   Updated: 2025/06/15 13:14:14 by ltomasze         ###   ########.fr       */
+/*   Updated: 2025/06/15 16:59:48 by ltomasze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,5 @@ std::string Animal::getType() const
 
 void Animal::makeSound() const
 {
-    std::cout << "Some generic animal sound!" << std::endl;
+    std::cout << "Unknown animal sound!" << std::endl;
 }
