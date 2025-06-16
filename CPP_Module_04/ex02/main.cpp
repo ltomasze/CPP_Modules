@@ -18,9 +18,12 @@
 
 int main()
 {
+//const AAnimal* meta = new AAnimal();
+//meta->makeSound();
+//delete meta;
+
 const AAnimal* j = new Dog();
 const AAnimal* i = new Cat();
-//AAnimal* ptr = new AAnimal();
 delete j;//should not create a leak
 delete i;
 std::cout <<"MY TEST!!!"<<std::endl;

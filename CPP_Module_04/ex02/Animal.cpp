@@ -39,3 +39,8 @@ std::string AAnimal::getType() const
 {
     return type;
 }
+/*
+void AAnimal::makeSound() const
+{
+    std::cout << "Unknown animal sound!" << std::endl;
+}*/
