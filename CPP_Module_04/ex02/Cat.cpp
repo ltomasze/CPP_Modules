@@ -19,7 +19,7 @@ Cat::Cat()
     std::cout << "Cat has been created!" << std::endl;
 }
 
-Cat::Cat(const Cat& sourceObj) : Animal(sourceObj)
+Cat::Cat(const Cat& sourceObj) : AAnimal(sourceObj)
 {
     type = sourceObj.type;
 	brain = new Brain(*sourceObj.brain);
@@ -30,7 +30,7 @@ Cat& Cat::operator=(const Cat& sourceObj)
 {
     if (this != &sourceObj)
     {
-        Animal::operator=(sourceObj);
+        AAnimal::operator=(sourceObj);
         type = sourceObj.type;
 		if (brain)
 			delete brain;
