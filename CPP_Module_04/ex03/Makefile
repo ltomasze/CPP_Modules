@@ -14,7 +14,9 @@ NAME = ex03
 CC = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRC = main.cpp AMateria.cpp Ice.cpp Cure.cpp
+SRC = main.cpp AMateria.cpp Ice.cpp Cure.cpp \
+MateriaSource.cpp Character.cpp
+
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)

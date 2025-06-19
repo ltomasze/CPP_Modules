@@ -12,7 +12,8 @@ Cure& Cure::operator=(const Cure& sourceObj) {
 
 Cure::~Cure() {}
 
-AMateria* Cure::clone() const {
+AMateria* Cure::clone() const
+{
     return new Cure(*this);
 }
 
