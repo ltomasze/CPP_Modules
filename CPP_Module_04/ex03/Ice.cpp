@@ -4,7 +4,8 @@ Ice::Ice() : AMateria("ice") {}
 
 Ice::Ice(const Ice& sourceObj) : AMateria(sourceObj) {}
 
-Ice& Ice::operator=(const Ice& sourceObj) {
+Ice& Ice::operator=(const Ice& sourceObj)
+{
     if (this != &sourceObj)
         AMateria::operator=(sourceObj);
     return *this;

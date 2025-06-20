@@ -19,9 +19,11 @@ Character::Character(const Character& sourceObj) : _name(sourceObj._name)
 
 Character& Character::operator=(const Character& sourceObj)
 {
-    if (this != &sourceObj) {
+    if (this != &sourceObj)
+    {
         _name = sourceObj._name;
-        for (int i = 0; i < 4; ++i) {
+        for (int i = 0; i < 4; ++i)
+        {
             if (_inventory[i])
                 delete _inventory[i];
             if (sourceObj._inventory[i])
