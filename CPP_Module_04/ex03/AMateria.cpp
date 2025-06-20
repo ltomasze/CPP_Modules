@@ -15,7 +15,7 @@ AMateria& AMateria::operator=(const AMateria& sourceObj)
 
 AMateria::~AMateria() {}
 
-std::string const & AMateria::getType() const
+std::string const &AMateria::getType() const
 {
     return type;
 }

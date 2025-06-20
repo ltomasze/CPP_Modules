@@ -43,8 +43,9 @@ void MateriaSource::learnMateria(AMateria* m)
     if (!m)
         return;
     for (int i = 0; i < 4; ++i) {
-        if (!_templates[i]) {
-            _templates[i] = m->clone();
+        if (!_templates[i])
+        {
+            _templates[i] = m;
             break;
         }
     }
