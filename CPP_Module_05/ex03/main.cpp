@@ -6,7 +6,7 @@
 /*   By: ltomasze <ltomasze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 12:45:43 by ltomasze          #+#    #+#             */
-/*   Updated: 2025/06/29 16:18:57 by ltomasze         ###   ########.fr       */
+/*   Updated: 2025/06/29 17:33:02 by ltomasze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
+#include "Intern.hpp"
 
 int main()
 {
@@ -60,5 +61,27 @@ int main()
 	{
 	    std::cerr << e.what() << std::endl;
 	}
+	std::cout << "TEST4" << std::endl;
+	Intern someRandomIntern;
+	AForm* rrf = someRandomIntern.makeForm("robotomy request", "Bender");
+	if (rrf)
+	{
+		std::cout << *rrf << std::endl;
+		try
+        {
+            Bureaucrat b4("Darek", 1);
+            b4.signForm(*rrf);
+            b4.executeForm(*rrf);
+        }
+        catch (const std::exception& e)
+        {
+            std::cerr << e.what() << std::endl;
+        }
+		delete rrf;
+	}
+	else
+    {
+        std::cerr << "Failed to create form." << std::endl;
+    }
 	return 0;
 }
