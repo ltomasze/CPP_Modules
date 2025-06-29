@@ -6,7 +6,7 @@
 /*   By: ltomasze <ltomasze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 12:02:59 by ltomasze          #+#    #+#             */
-/*   Updated: 2025/06/29 11:44:12 by ltomasze         ###   ########.fr       */
+/*   Updated: 2025/06/29 15:47:05 by ltomasze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ class Bureaucrat
 		void incrementGrade();
 		void decrementGrade();
 		void signForm(AForm& form);
+		void executeForm(AForm const & form);
 
 		class GradeTooHighException: public std::exception
 		{
