@@ -6,13 +6,11 @@
 /*   By: ltomasze <ltomasze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 13:38:15 by ltomasze          #+#    #+#             */
-/*   Updated: 2025/07/01 14:23:37 by ltomasze         ###   ########.fr       */
+/*   Updated: 2025/07/01 15:55:40 by ltomasze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
-#include <iostream>
-
 
 ScalarConverter::ScalarConverter() {}
 
@@ -29,4 +27,65 @@ ScalarConverter& ScalarConverter::operator=(const ScalarConverter& other)
 
 ScalarConverter::~ScalarConverter() {};
 
-void ScalarConverter::convert(const std::string& literal) {}
+void ScalarConverter :: convert( std::string literal )
+{
+    std::cout << std::fixed << std::setprecision(1);
+
+    // Sprawdzenie pseudo-literałów
+    if (literal == "nan" || literal == "nanf" || literal == "+inf" || literal == "-inf" || 
+        literal == "+inff" || literal == "-inff") {
+        std::cout << "char: impossible" << std::endl;
+        std::cout << "int: impossible" << std::endl;
+        std::cout << "float: " << literal << (literal[literal.size() - 1] == 'f' ? "" : "f") << std::endl;
+        std::cout << "double: " << literal << std::endl;
+        return;
+    }
+
+    char* endPtr = NULL;
+
+    // Sprawdzenie typu int
+    long intValue = std::strtol(literal.c_str(), &endPtr, 10);
+    if (*endPtr == '\0') { // Jeśli cała wartość została poprawnie skonwertowana
+        if (intValue >= std::numeric_limits<char>::min() && intValue <= std::numeric_limits<char>::max()) {
+            char charValue = static_cast<char>(intValue);
+            if (std::isprint(charValue))
+                std::cout << "char: '" << charValue << "'" << std::endl;
+            else
+                std::cout << "char: Non displayable" << std::endl;
+        } else {
+            std::cout << "char: impossible" << std::endl;
+        }
+        std::cout << "int: " << intValue << std::endl;
+        std::cout << "float: " << static_cast<float>(intValue) << "f" << std::endl;
+        std::cout << "double: " << static_cast<double>(intValue) << std::endl;
+        return;
+    }
+
+    // Sprawdzenie typu float/double
+    double doubleValue = std::strtod(literal.c_str(), &endPtr);
+    if (*endPtr == '\0' || (*endPtr == 'f' && *(endPtr + 1) == '\0')) { // Float lub double
+        if (doubleValue >= std::numeric_limits<char>::min() && doubleValue <= std::numeric_limits<char>::max()) {
+            char charValue = static_cast<char>(doubleValue);
+            if (std::isprint(charValue))
+                std::cout << "char: '" << charValue << "'" << std::endl;
+            else
+                std::cout << "char: Non displayable" << std::endl;
+        } else {
+            std::cout << "char: impossible" << std::endl;
+        }
+        if (doubleValue >= std::numeric_limits<int>::min() && doubleValue <= std::numeric_limits<int>::max()) {
+            std::cout << "int: " << static_cast<int>(doubleValue) << std::endl;
+        } else {
+            std::cout << "int: impossible" << std::endl;
+        }
+        std::cout << "float: " << static_cast<float>(doubleValue) << "f" << std::endl;
+        std::cout << "double: " << doubleValue << std::endl;
+        return;
+    }
+
+    // Jeśli żaden typ nie pasuje
+    std::cout << "char: impossible" << std::endl;
+    std::cout << "int: impossible" << std::endl;
+    std::cout << "float: impossible" << std::endl;
+    std::cout << "double: impossible" << std::endl;
+}
