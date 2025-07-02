@@ -6,7 +6,7 @@
 /*   By: ltomasze <ltomasze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 13:20:33 by ltomasze          #+#    #+#             */
-/*   Updated: 2025/07/01 15:55:59 by ltomasze         ###   ########.fr       */
+/*   Updated: 2025/07/02 14:05:57 by ltomasze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,10 @@
 
 #include <string>
 #include <iostream>
-
-#include <iostream>
-#include <cstdlib>
-#include <cmath>
+#include <cstdlib> // for strtol...
+#include <cmath> //for nan...
 #include <limits>
-#include <iomanip>
+#include <iomanip> // for fixed...
 
 class ScalarConverter
 {
