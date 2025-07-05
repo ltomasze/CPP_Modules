@@ -6,7 +6,7 @@
 /*   By: ltomasze <ltomasze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 18:16:09 by ltomasze          #+#    #+#             */
-/*   Updated: 2025/07/02 18:17:19 by ltomasze         ###   ########.fr       */
+/*   Updated: 2025/07/05 13:16:59 by ltomasze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,30 +15,32 @@
 
 int main() 
 {
-    // Utworzenie obiektu Data
-    Data originalData = {42, "Example"};
+    Data originalData;
+	originalData.value = 42;
+	originalData.name = "Example";
+    //Data originalData = {42, "Example"};
     Data* originalPtr = &originalData;
-
-    // Wyświetlenie oryginalnych danych
-    std::cout << "Original Data:" << std::endl;
-    std::cout << "Value: " << originalPtr->value << ", Name: " << originalPtr->name << std::endl;
-
-    // Serializacja wskaźnika
+    std::cout << "Original Data:" << "Value: " << originalPtr->value 
+			<< ", Name:" << originalPtr->name;
     uintptr_t raw = Serializer::serialize(originalPtr);
-    std::cout << "\nSerialized value (uintptr_t): " << raw << std::endl;
-
-    // Deserializacja wskaźnika
+    std::cout << ", Serialized value (uintptr_t): " << raw << std::endl;
     Data* deserializedPtr = Serializer::deserialize(raw);
-    std::cout << "\nDeserialized Data:" << std::endl;
-    std::cout << "Value: " << deserializedPtr->value << ", Name: " << deserializedPtr->name << std::endl;
-
-    // Sprawdzenie wskaźników
-    std::cout << "\nPointer comparison:" << std::endl;
-    if (originalPtr == deserializedPtr) {
+    std::cout << "Deserialized Data:" << "Value: " << deserializedPtr->value 
+			<< ", Name: " << deserializedPtr->name << std::endl;
+    std::cout << "Pointer comparison: ";
+    if (originalPtr == deserializedPtr)
+	{
         std::cout << "Pointers match!" << std::endl;
-    } else {
+    } 
+	else 
+	{
         std::cout << "Pointers do not match!" << std::endl;
     }
+	deserializedPtr->value = 77;
+    deserializedPtr->name = "Change Example";
+    std::cout << "Change Deserialized Data:" 
+              << " Value: " << deserializedPtr->value 
+              << ", Name: " << deserializedPtr->name << std::endl;
 
     return 0;
 }
