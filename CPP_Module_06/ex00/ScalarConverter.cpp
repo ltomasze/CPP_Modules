@@ -6,7 +6,7 @@
 /*   By: ltomasze <ltomasze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 13:38:15 by ltomasze          #+#    #+#             */
-/*   Updated: 2025/07/02 16:08:10 by ltomasze         ###   ########.fr       */
+/*   Updated: 2025/07/06 10:32:35 by ltomasze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ ScalarConverter::~ScalarConverter() {};
 void ScalarConverter :: convert( std::string literal )
 {
     std::cout << std::fixed << std::setprecision(1);
-	if (literal == "\\n")
+	/*if (literal == "\\n")
 	{
         literal = "\n";
     } 
@@ -65,7 +65,7 @@ void ScalarConverter :: convert( std::string literal )
     	std::cout << "float: " << static_cast<float>(charValue) << "f" << std::endl;
     	std::cout << "double: " << static_cast<double>(charValue) << std::endl;
     	return;
-	}
+	}*/
     if (literal == "nan" || literal == "nanf" || literal == "+inf" || literal == "-inf" || 
         literal == "+inff" || literal == "-inff") 
 		{
