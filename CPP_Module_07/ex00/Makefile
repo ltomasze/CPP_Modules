@@ -6,7 +6,7 @@
 #    By: ltomasze <ltomasze@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/10 16:49:33 by ltomasze          #+#    #+#              #
-#    Updated: 2025/07/06 10:38:25 by ltomasze         ###   ########.fr        #
+#    Updated: 2025/07/06 10:47:11 by ltomasze         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = whatever
 CC = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRC = main.cpp whatever.cpp
+SRC = main.cpp
 
 OBJ = $(SRC:.cpp=.o)
 

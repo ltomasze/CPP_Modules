@@ -6,11 +6,13 @@
 /*   By: ltomasze <ltomasze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 10:39:22 by ltomasze          #+#    #+#             */
-/*   Updated: 2025/07/06 10:39:45 by ltomasze         ###   ########.fr       */
+/*   Updated: 2025/07/06 11:57:27 by ltomasze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int main( void ) 
+#include "whatever.hpp"
+
+int main( void )
 {
 	int a = 2;
 	int b = 3;
