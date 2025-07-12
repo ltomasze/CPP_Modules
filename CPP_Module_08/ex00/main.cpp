@@ -6,7 +6,7 @@
 /*   By: ltomasze <ltomasze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 16:55:40 by ltomasze          #+#    #+#             */
-/*   Updated: 2025/07/08 17:01:38 by ltomasze         ###   ########.fr       */
+/*   Updated: 2025/07/12 12:46:05 by ltomasze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ int main()
         std::cout << "Found: " << *easyfind(vec, 4) << std::endl;
         std::cout << "Found: " << *easyfind(vec, 6) << std::endl;
     }
-	catch (const std::exception& e) {
+	catch (const std::exception& e)
+	{
         std::cerr << e.what() << std::endl;
     }
     try 
