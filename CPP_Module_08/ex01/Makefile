@@ -6,11 +6,11 @@
 #    By: ltomasze <ltomasze@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/10 16:49:33 by ltomasze          #+#    #+#              #
-#    Updated: 2025/07/12 14:25:47 by ltomasze         ###   ########.fr        #
+#    Updated: 2025/07/12 17:42:39 by ltomasze         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Span
+NAME = ex01
 CC = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 
