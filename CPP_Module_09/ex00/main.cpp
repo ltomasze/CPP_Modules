@@ -6,7 +6,7 @@
 /*   By: ltomasze <ltomasze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 14:12:46 by ltomasze          #+#    #+#             */
-/*   Updated: 2025/09/14 16:29:53 by ltomasze         ###   ########.fr       */
+/*   Updated: 2025/09/14 16:42:35 by ltomasze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,15 @@ int main(int argc, char** argv)
         return (1);
     }
 	std::string line;
+	bool isFirstLine = true;
 	while (std::getline(file, line))
 	{
-		if (std::isalpha(line[0]))
-            continue;
+		if (isFirstLine) 
+		{
+		    isFirstLine = false;
+		    if (!std::isdigit(line[0])) 
+		        continue;
+		}
 	    if (line.empty())
 	        continue;
 	    std::string::size_type pipePos = line.find('|'); //size_type is the most size for the string, the last index is npos!
