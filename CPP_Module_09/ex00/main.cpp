@@ -6,7 +6,7 @@
 /*   By: ltomasze <ltomasze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 14:12:46 by ltomasze          #+#    #+#             */
-/*   Updated: 2025/09/14 14:26:39 by ltomasze         ###   ########.fr       */
+/*   Updated: 2025/09/14 14:58:25 by ltomasze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ int main(int argc, char** argv)
 	{
 	    if (line.empty())
 	        continue;
-	    std::string::size_type pipePos = line.find('|');
-	    if (pipePos == std::string::npos)//npos special value for find when dont find:)
+	    std::string::size_type pipePos = line.find('|'); //size_type is the most size for the string, the last index is npos!
+	    if (pipePos == std::string::npos)//npos is the special value for find, when dont find:)
 		{
 	        std::cerr << "Error: bad input => " << line << std::endl;
 	        continue;
