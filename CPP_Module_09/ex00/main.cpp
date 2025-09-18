@@ -6,7 +6,7 @@
 /*   By: ltomasze <ltomasze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 14:12:46 by ltomasze          #+#    #+#             */
-/*   Updated: 2025/09/18 17:40:58 by ltomasze         ###   ########.fr       */
+/*   Updated: 2025/09/18 17:44:04 by ltomasze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ int main(int argc, char** argv)
         return (1);
     }
     // Wczytanie bazy danych
-    std::map<std::string, double> exchangeRates = loadExchangeRates("data.csv");
-    if (exchangeRates.empty()) 
-    {
-        std::cerr << "Error: could not load exchange rates." << std::endl;
-        return (1);
-    }
+    //std::map<std::string, double> exchangeRates = loadExchangeRates("data.csv");
+    //if (exchangeRates.empty()) 
+    //{
+    //    std::cerr << "Error: could not load exchange rates." << std::endl;
+    //    return (1);
+    //}
     std::ifstream file(argv[1]);
     if (!file.is_open()) 
     {
@@ -66,6 +66,12 @@ int main(int argc, char** argv)
             std::cerr << errorMessage << std::endl;
             continue;
         }
+		std::map<std::string, double> exchangeRates = loadExchangeRates("data.csv");
+    	if (exchangeRates.empty()) 
+    	{
+    	    std::cerr << "Error: could not load exchange rates." << std::endl;
+    	    return (1);
+    	}
         // Pobierz kurs wymiany dla daty
         double rate = getExchangeRate(exchangeRates, date);
         if (rate == 0.0) 
