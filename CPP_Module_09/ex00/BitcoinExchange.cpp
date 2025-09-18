@@ -6,7 +6,7 @@
 /*   By: ltomasze <ltomasze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 13:56:05 by ltomasze          #+#    #+#             */
-/*   Updated: 2025/09/18 11:41:53 by ltomasze         ###   ########.fr       */
+/*   Updated: 2025/09/18 12:37:06 by ltomasze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,53 @@ bool isValidDate(const std::string& date)
     if (day < 1 || day > daysInMonth[month - 1]) 
         return false;
     return true;
+}
+
+bool isValidValue(const std::string& value, std::string& errorMessage) 
+{
+    if (value.empty())
+    {
+		errorMessage = "Error: bad input => " + value;
+        return false;
+	}
+	bool hasDot = false;
+	size_t i = 0;
+	if (value[0] == '-')
+    {
+        i = 1;
+    }
+	for (; i < value.size(); ++i) 
+    {
+        if (value[i] == '.') 
+        {
+            if (hasDot)
+			{
+				errorMessage = "Error: bad input => " + value;
+				return false;
+			}
+            hasDot = true;
+        } 
+        else if (!std::isdigit(value[i]))
+		{
+			errorMessage = "Error: bad input => " + value;
+            return false;
+		}
+    }
+	if (value[value.size() - 1] == '.') //check the last position isnt dot
+	{
+		errorMessage = "Error: bad input => " + value;
+        return false;
+	}
+	double num = std::atof(value.c_str());
+	if (num < 0)
+	{
+		errorMessage = "Error: not a positive number.";
+        return false;
+	}
+	if (num > 1000) 
+    {
+        errorMessage = "Error: too large a number.";
+        return false;
+    }
+	return true;
 }

@@ -6,7 +6,7 @@
 /*   By: ltomasze <ltomasze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 14:12:46 by ltomasze          #+#    #+#             */
-/*   Updated: 2025/09/18 11:42:14 by ltomasze         ###   ########.fr       */
+/*   Updated: 2025/09/18 12:38:39 by ltomasze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,13 @@ int main(int argc, char** argv)
 		    std::cerr << "Error: bad input => " << line << std::endl;
 		    continue;
 		}
-	    // Tymczasowo wypisz linie
+		std::string errorMessage;
+		if (!isValidValue(value, errorMessage)) 
+    	{
+    	    std::cerr << errorMessage << std::endl;
+    	    continue;
+    	}
+	    //Tymczasowo wypisz linie
 	    std::cout << date << "|"<< value << std::endl;
 	}
     return 0;
