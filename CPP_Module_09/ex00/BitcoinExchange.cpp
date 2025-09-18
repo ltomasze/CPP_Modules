@@ -6,7 +6,7 @@
 /*   By: ltomasze <ltomasze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 13:56:05 by ltomasze          #+#    #+#             */
-/*   Updated: 2025/09/18 12:37:06 by ltomasze         ###   ########.fr       */
+/*   Updated: 2025/09/18 17:37:27 by ltomasze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,4 +88,44 @@ bool isValidValue(const std::string& value, std::string& errorMessage)
         return false;
     }
 	return true;
+}
+
+std::map<std::string, double> loadExchangeRates(const std::string& filename) 
+{
+    std::map<std::string, double> exchangeRates;
+    std::ifstream file(filename.c_str());
+    if (!file.is_open()) 
+    {
+        std::cerr << "Error: could not open database file." << std::endl;
+        return exchangeRates;
+    }
+
+    std::string line;
+    while (std::getline(file, line)) 
+    {
+        std::istringstream ss(line);
+        std::string date;
+        double rate;
+
+        if (std::getline(ss, date, ',') && ss >> rate) 
+        {
+            exchangeRates[date] = rate;
+        }
+    }
+
+    return exchangeRates;
+}
+
+double getExchangeRate(const std::map<std::string, double>& exchangeRates, const std::string& date) 
+{
+    std::map<std::string, double>::const_iterator it = exchangeRates.lower_bound(date);
+    if (it == exchangeRates.end() || it->first != date) 
+    {
+        if (it == exchangeRates.begin()) 
+        {
+            return 0.0; // Brak wcześniejszej daty
+        }
+        --it; // Cofnij się do wcześniejszej daty
+    }
+    return it->second;
 }
