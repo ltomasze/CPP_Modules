@@ -6,7 +6,7 @@
 /*   By: ltomasze <ltomasze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 16:32:07 by ltomasze          #+#    #+#             */
-/*   Updated: 2025/09/20 17:33:52 by ltomasze         ###   ########.fr       */
+/*   Updated: 2025/09/20 17:59:20 by ltomasze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int main(int argc, char* argv[])
     int result = rpn.processExpression(argv[1]);
     if (result == -1) 
     {
-        return 1; // W przypadku błędu kończymy program
+        return 1;
     }
     std::cout << result << std::endl;
     return 0;

@@ -6,7 +6,7 @@
 /*   By: ltomasze <ltomasze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 16:31:45 by ltomasze          #+#    #+#             */
-/*   Updated: 2025/09/20 17:32:32 by ltomasze         ###   ########.fr       */
+/*   Updated: 2025/09/20 18:13:44 by ltomasze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ int RPN::processExpression(const std::string& expression) const
         char token = expression[i];
         if (std::isspace(token)) 
 		{
-            continue; // Ignoruj spacje
+            continue;
         } 
 		else if (std::isdigit(token)) 
 		{
-            stack.push(token - '0'); // Zamień cyfrę na liczbę i dodaj na stos
+            stack.push(token - '0'); // convert digital for number
         } 
 		else if (isOperator(token)) 
 		{
@@ -50,7 +50,7 @@ int RPN::processExpression(const std::string& expression) const
                 std::cerr << "Error" << std::endl;
             	return -1;
             }
-            int b = stack.top(); stack.pop();
+            int b = stack.top(); stack.pop(); //top-download value for top, pop-delete value for top
             int a = stack.top(); stack.pop();
             stack.push(executeOperation(token, a, b));
         } else
