@@ -6,7 +6,7 @@
 /*   By: ltomasze <ltomasze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 13:56:05 by ltomasze          #+#    #+#             */
-/*   Updated: 2025/09/18 17:37:27 by ltomasze         ###   ########.fr       */
+/*   Updated: 2025/09/20 14:54:59 by ltomasze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,39 +93,37 @@ bool isValidValue(const std::string& value, std::string& errorMessage)
 std::map<std::string, double> loadExchangeRates(const std::string& filename) 
 {
     std::map<std::string, double> exchangeRates;
-    std::ifstream file(filename.c_str());
+    std::ifstream file(filename.c_str()); //load file to map
     if (!file.is_open()) 
     {
         std::cerr << "Error: could not open database file." << std::endl;
         return exchangeRates;
     }
-
     std::string line;
     while (std::getline(file, line)) 
     {
-        std::istringstream ss(line);
+        std::istringstream ss(line); //input only like cin, we get stream with line is string 
         std::string date;
         double rate;
 
-        if (std::getline(ss, date, ',') && ss >> rate) 
+        if (std::getline(ss, date, ',') && ss >> rate) //<- divide line for date and rate, ss>>rate change string for double
         {
-            exchangeRates[date] = rate;
+            exchangeRates[date] = rate; //key=date, value=rate
         }
     }
-
     return exchangeRates;
 }
 
 double getExchangeRate(const std::map<std::string, double>& exchangeRates, const std::string& date) 
 {
     std::map<std::string, double>::const_iterator it = exchangeRates.lower_bound(date);
-    if (it == exchangeRates.end() || it->first != date) 
+    if (it == exchangeRates.end() || it->first != date) //it->first != date -is not equal our date
     {
         if (it == exchangeRates.begin()) 
         {
-            return 0.0; // Brak wcześniejszej daty
+            return 0.0;
         }
-        --it; // Cofnij się do wcześniejszej daty
+        --it;
     }
     return it->second;
 }
