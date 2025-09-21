@@ -6,7 +6,7 @@
 /*   By: ltomasze <ltomasze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:40:30 by ltomasze          #+#    #+#             */
-/*   Updated: 2025/09/21 15:00:48 by ltomasze         ###   ########.fr       */
+/*   Updated: 2025/09/21 16:34:31 by ltomasze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,17 @@ int main(int argc, char* argv[])
         std::cout << " " << numbers[i];
     std::cout << std::endl;
 
-    // Przygotuj oba kontenery
-    std::vector<int> vec(numbers);
-    std::deque<int> deq(numbers.begin(), numbers.end());
+	PmergeMe pm;
 
-    // Sortowanie i pomiar czasu dla vector
-    PmergeMe pm;
+    // Pomiar czasu dla vector (tworzenie + sortowanie)
     clock_t startVec = clock();
+    std::vector<int> vec(numbers);
     pm.sortVector(vec);
     clock_t endVec = clock();
 
-    // Sortowanie i pomiar czasu dla deque
+    // Pomiar czasu dla deque (tworzenie + sortowanie)
     clock_t startDeq = clock();
+    std::deque<int> deq(numbers.begin(), numbers.end());
     pm.sortDeque(deq);
     clock_t endDeq = clock();
 
