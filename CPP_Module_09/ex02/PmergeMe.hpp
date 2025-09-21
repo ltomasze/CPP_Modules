@@ -6,7 +6,7 @@
 /*   By: ltomasze <ltomasze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:41:04 by ltomasze          #+#    #+#             */
-/*   Updated: 2025/09/21 10:39:27 by ltomasze         ###   ########.fr       */
+/*   Updated: 2025/09/21 15:28:16 by ltomasze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,29 @@
 
 #include <vector>
 #include <deque>
-#include <string>
+#include <cstddef>
+#include <algorithm>
 #include <iostream>
 #include <sstream>
 #include <ctime>
-#include <algorithm> // for sort
-#include <iomanip> // for setprecision
 
 class PmergeMe
 {
-	public:
-		PmergeMe();
-    	PmergeMe(const PmergeMe& other);
-    	PmergeMe& operator=(const PmergeMe& other);
-    	~PmergeMe(); 
+public:
+    PmergeMe();
+    PmergeMe(const PmergeMe &other);
+    PmergeMe &operator=(const PmergeMe &other);
+    ~PmergeMe();
 
-		void processInput(const std::vector<int>& input);
-		void displayResults() const;
+    void sortVector(std::vector<int>& vec); //we need this method to prottect recursion 
+    void sortDeque(std::deque<int>& deq);
 
-	private:
-    	std::vector<int> containerA;
-    	std::deque<int> containerB;
-    	double timeA;
-    	double timeB;
+private:
+    void fordJohnsonSortVector(std::vector<int>& vec);
+    void fordJohnsonSortDeque(std::deque<int>& deq);
+
+    std::vector<size_t> jacobsthalIndices(size_t n) const;
+
+    void binaryInsertVector(std::vector<int>& vec, int value, size_t end);
+    void binaryInsertDeque(std::deque<int>& deq, int value, size_t end);
 };
