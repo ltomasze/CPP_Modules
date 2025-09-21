@@ -6,7 +6,7 @@
 /*   By: ltomasze <ltomasze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:41:04 by ltomasze          #+#    #+#             */
-/*   Updated: 2025/09/21 10:30:42 by ltomasze         ###   ########.fr       */
+/*   Updated: 2025/09/21 10:39:27 by ltomasze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 #include <iostream>
 #include <sstream>
 #include <ctime>
+#include <algorithm> // for sort
+#include <iomanip> // for setprecision
 
 class PmergeMe
 {
