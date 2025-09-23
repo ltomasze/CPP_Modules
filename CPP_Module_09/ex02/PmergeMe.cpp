@@ -6,7 +6,7 @@
 /*   By: ltomasze <ltomasze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:40:47 by ltomasze          #+#    #+#             */
-/*   Updated: 2025/09/23 12:11:07 by ltomasze         ###   ########.fr       */
+/*   Updated: 2025/09/23 14:25:56 by ltomasze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void PmergeMe::fordJohnsonSortDeque(std::deque<int>& deq)
 
 std::vector<size_t> PmergeMe::jacobsthalIndices(size_t n) const 
 {
-    std::vector<size_t> jacob;
+    std::vector<size_t> jacob;//create numbers jacobsthal located in the pending range
     if (n == 0)
         return jacob;
     jacob.push_back(0);
@@ -120,7 +120,7 @@ std::vector<size_t> PmergeMe::jacobsthalIndices(size_t n) const
         jacob.push_back(next);
         ++k;
     }
-    std::vector<size_t> indices;
+    std::vector<size_t> indices;//adds numbers at the end that are not jacobsthal numbers
     for (size_t i = 1; i < jacob.size(); ++i)
         indices.push_back(jacob[i]);
     for (size_t i = 0; i < n; ++i) {
