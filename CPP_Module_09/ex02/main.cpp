@@ -6,7 +6,7 @@
 /*   By: ltomasze <ltomasze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:40:30 by ltomasze          #+#    #+#             */
-/*   Updated: 2025/09/23 12:22:54 by ltomasze         ###   ########.fr       */
+/*   Updated: 2025/09/23 14:46:55 by ltomasze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,27 @@
 
 int main(int argc, char* argv[])
 {
-    // Zakładamy, że wejście jest poprawne (same dodatnie liczby całkowite)
+	if (argc < 2)
+    {
+        std::cerr << "Error" << std::endl;
+        return 1;
+    }
     std::vector<int> numbers;
     for (int i = 1; i < argc; ++i)
     {
         std::istringstream iss(argv[i]);
         int num;
-        iss >> num;
+		char extra; //for example "1.1"
+		if (!(iss >> num) || num <= 0 || (iss >> extra))
+    {
+        std::cerr << "Error" << std::endl;
+        return 1;
+    }
+	if (std::find(numbers.begin(), numbers.end(), num) != numbers.end())
+    {
+        continue;
+    }
+    
         numbers.push_back(num);
     }
     std::cout << "Before:";
