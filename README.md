@@ -1,3 +1,47 @@
+Modules Overview
+
+CPP00 <br>
+Topics: Basic C++ syntax, classes, member functions <br>
+Main concepts: Classes, namespaces, input/output, initialization <br><br>
+
+CPP01 <br>
+Topics: Memory, pointers, references <br>
+Main concepts: new, delete, stack vs heap, references <br><br>
+
+CPP02 <br>
+Topics: Operator overloading and canonical form <br>
+Main concepts: Constructors, destructors, copy operations, operator overloading <br><br>
+
+CPP03 <br>
+Topics: Inheritance <br>
+Main concepts: Base and derived classes, protected access <br><br>
+
+CPP04 <br>
+Topics: Polymorphism and abstract classes <br>
+Main concepts: Virtual functions, interfaces, deep copies <br><br>
+
+CPP05 <br>
+Topics: Exceptions and class hierarchy <br>
+Main concepts: Exception handling, validation, bureaucracy simulation <br><br>
+
+CPP06 <br>
+Topics: Type casting <br>
+Main concepts: static_cast, dynamic_cast, reinterpret_cast, const_cast <br><br>
+
+CPP07 <br>
+Topics: Templates <br>
+Main concepts: Function and class templates, generic programming <br><br>
+
+CPP08 <br>
+Topics: STL containers and algorithms <br>
+Main concepts: std::vector, std::list, std::map, iterators <br><br>
+
+CPP09 <br>
+Topics: Advanced STL usage and parsing <br>
+Main concepts: std::deque, std::stack, algorithm efficiency <br><br>
+
+**************************************************************************************** <br>
+
 Zakres modułów
 
 CPP00 <br>
